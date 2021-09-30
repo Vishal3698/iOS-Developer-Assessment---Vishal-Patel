@@ -47,31 +47,31 @@ struct UserView: View {
                 // Navigation Links for Followers and Following Screens only if the count is more than 0
                 HStack{
                     if (viewModel.userData.followers ?? 0) > 0{
-                        
                         NavigationLink(destination: SelectedListOfUsersView(selectedUserName: viewModel.userData.login ?? "User Not Found", selectedButtonTitle: "/followers"),
-                        label: {
-                            Text("Followers: ").fontWeight(.medium)
-                                .navigationTitle(viewModel.userData.login ?? "")
+                                        label: {
+                                            Text("Followers: ").fontWeight(.medium)
+                                                .navigationTitle(viewModel.userData.login ?? "")
                         })
-
-                        Text("\(viewModel.userData.followers ?? 0)").padding(.trailing)
-
-                        NavigationLink(destination: SelectedListOfUsersView(selectedUserName: viewModel.userData.login ?? "User Not Found", selectedButtonTitle: "/following")
-                        , label: {
-                            Text("Following: ").fontWeight(.medium)
-                                .navigationTitle(viewModel.userData.login ?? "")
-                        })
-                        Text("\(viewModel.userData.following ?? 0)")
-                    
                     }else{
                     //if the count is 0, Simple text instead of navigation links
                         Text("Followers: ").fontWeight(.medium)
                             .navigationTitle(viewModel.userData.login ?? "")
-                        Text("\(viewModel.userData.followers ?? 0)").padding(.trailing)
+                    }
+                    Text("\(viewModel.userData.followers ?? 0)").padding(.trailing)
+                    
+                    
+                    if (viewModel.userData.following ?? 0) > 0{
+                        NavigationLink(destination: SelectedListOfUsersView(selectedUserName: viewModel.userData.login ?? "User Not Found", selectedButtonTitle: "/following"),
+                                        label: {
+                                            Text("Following: ").fontWeight(.medium)
+                                                .navigationTitle(viewModel.userData.login ?? "")
+                        })
+                    }else{
+                    //if the count is 0, Simple text instead of navigation links
                         Text("Following: ").fontWeight(.medium)
                             .navigationTitle(viewModel.userData.login ?? "")
-                        Text("\(viewModel.userData.following ?? 0)")
                     }
+                    Text("\(viewModel.userData.following ?? 0)")
                     
                 }
 
